@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>MobiStore | Search by Price & Model</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+        
+        <style>
+            :root {
+                --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                --glass-bg: rgba(255, 255, 255, 0.95);
+            }
+
+            body {
+                font-family: 'Poppins', sans-serif;
+                background-color: #f4f7f6;
+            }
+
+            .hero-section {
+                background: var(--primary-gradient);
+                color: white;
+                padding: 80px 0 100px 0;
+                text-align: center;
+                clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+            }
+
+            .search-container {
+                max-width: 600px;
+                margin: -50px auto 40px;
+                position: relative;
+                z-index: 100;
+            }
+
+            .form-control-lg {
+                border-radius: 50px;
+                padding: 15px 30px;
+                border: none;
+                box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+                font-size: 1.1rem;
+            }
+
+            .card {
+                border: none;
+                border-radius: 25px;
+                transition: 0.4s ease;
+                background: #fff;
+            }
+
+            .card:hover {
+                transform: translateY(-12px);
+                box-shadow: 0 20px 40px rgba(118, 75, 162, 0.2) !important;
+            }
+
+            .price-badge {
+                background: var(--primary-gradient);
+                color: white;
+                padding: 6px 18px;
+                border-radius: 50px;
+                font-weight: 700;
+            }
+
+            .modal-content { border-radius: 30px; border: none; }
+            .modal-header { background: var(--primary-gradient); color: white; border-radius: 30px 30px 0 0; }
+        </style>
+    </head>
+
+    <body>
+        <section class="hero-section">
+            <div class="container">
+                <h1 class="display-4 fw-bold">MobiStore Premium</h1>
+                <p class="lead">Search by Model, Brand, or <b>Price (e.g. 549)</b></p>
+            </div>
+        </section>
+
+        <main class="container">
+            <div class="search-container">
+                <input id="Search" class="form-control form-control-lg" type="text" placeholder="Type price or mobile name...">
+            </div>
+
+            <div class="row g-4" id="mobileRow">
+                </div>
+        </main>
+
+        <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitle">Device Info</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body p-4 text-center">
+                        <img src="" id="modalImg" class="img-fluid mb-3" style="max-height: 250px;">
+                        <h3 id="modalName" class="fw-bold"></h3>
+                        <p id="modalDesc" class="text-muted"></p>
+                        <h2 class="text-primary fw-bold" id="modalPrice"></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+            let allMobiles = [];
+            const mobileRow = document.getElementById('mobileRow');
+            const searchInput = document.getElementById('Search');
+            const detailModal = new bootstrap.Modal(document.getElementById('productModal'));
+
+            async function fetchMobiles() {
+                const response = await fetch('https://dummyjson.com/products/category/smartphones');
+                const data = await response.json();
+                allMobiles = data.products;
+                renderMobiles(allMobiles);
+            }
+
+            function renderMobiles(data) {
+                mobileRow.innerHTML = '';
+                if (data.length === 0) {
+                    mobileRow.innerHTML = '<div class="col-12 text-center mt-5"><h3>No matching mobiles found!</h3></div>';
+                    return;
+                }
+
+                data.forEach(item => {
+                    mobileRow.innerHTML += `
+                        <div class="col-md-4 col-lg-3">
+                            <div class="card h-100 shadow-sm p-3">
+                                <img src="${item.thumbnail}" class="card-img-top" style="height:180px; object-fit:contain;">
+                                <div class="card-body px-0">
+                                    <h6 class="text-primary mb-1">${item.brand}</h6>
+                                    <h5 class="fw-bold">${item.title}</h5>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="price-badge">$${item.price}</span>
+                                        <button onclick="showDetails(${item.id})" class="btn btn-sm btn-outline-dark rounded-pill">Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                });
+            }
+
+            // Enhanced Search Logic (Title + Brand + Price)
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                const filtered = allMobiles.filter(item => 
+                    item.title.toLowerCase().includes(query) || 
+                    item.brand.toLowerCase().includes(query) ||
+                    item.price.toString().includes(query) // Price search added here
+                );
+                renderMobiles(filtered);
+            });
+
+            function showDetails(id) {
+                const p = allMobiles.find(m => m.id === id);
+                document.getElementById('modalTitle').innerText = p.brand;
+                document.getElementById('modalName').innerText = p.title;
+                document.getElementById('modalDesc').innerText = p.description;
+                document.getElementById('modalPrice').innerText = `$${p.price}`;
+                document.getElementById('modalImg').src = p.thumbnail;
+                detailModal.show();
+            }
+
+            fetchMobiles();
+        </script>
+    </body>
+</html>

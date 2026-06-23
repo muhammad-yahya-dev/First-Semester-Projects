@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="index.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<?xml-model href="index.dtd" type="application/xml-dtd"?>
+<!-- root -->
+<Rashon-Suppliers>
+    <shop>
+    <id>1</id>
+ <shop-name>
+       Bismillah
+ </shop-name> 
+ <address>
+      NORTH KARACHI
+ </address> 
+ <contact>
+       03132456789
+ </contact> 
+ <owner-name>
+        Zafar
+ </owner-name>
+ <discount>
+        15%
+ </discount>
+</shop>
+<shop>
+ <id>2</id>
+ <shop-name>
+      Imtiaz
+ </shop-name> 
+ <address>
+      NORTH NAZIMABAD
+ </address> 
+ <contact>
+      03132456789
+ </contact> 
+ <owner-name>
+        Saad
+ </owner-name>
+ <discount>
+    14%
+ </discount>
+</shop>
+<shop>
+ <id>3</id>
+ <shop-name>
+     AL-FALAH
+ </shop-name> 
+ <address>
+     NAZIMABAD
+ </address> 
+ <contact>
+     03456456789
+ </contact> 
+ <owner-name>
+      Umar
+ </owner-name>
+ <discount>
+     20%
+ </discount>
+</shop>
+<shop>
+ <id>4</id>
+ <shop-name>
+     Ubaid-cloths
+ </shop-name> 
+ <address>
+     Karachi
+ </address> 
+ <contact>
+    03434556789
+ </contact> 
+ <owner-name>
+    Ubaidullah
+ </owner-name>
+ <discount>
+       25%
+ </discount>
+</shop>
+<shop>
+ <id>5</id>
+ <shop-name>
+      AL-HAFIZ
+ </shop-name> 
+ <address>
+   Waqarabad
+ </address> 
+ <contact>
+03415656789
+ </contact> 
+ <owner-name>
+Abdullah
+ </owner-name>
+ <discount>
+30%
+ </discount>
+ </shop>
+</Rashon-Suppliers>

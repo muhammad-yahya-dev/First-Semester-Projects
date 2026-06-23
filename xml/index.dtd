@@ -1,0 +1,8 @@
+<!ELEMENT Rashon-Suppliers (shop+)>
+<!ELEMENT shop (id,shop-name,address,contact,owner-name,discount)>
+<!ELEMENT id (#PCDATA)>
+<!ELEMENT shop-name (#PCDATA)>
+<!ELEMENT address (#PCDATA)>
+<!ELEMENT contact (#PCDATA)>
+<!ELEMENT owner-name (#PCDATA)>
+<!ELEMENT discount (#PCDATA)>

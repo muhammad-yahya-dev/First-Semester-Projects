@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting Script</title>
+</head>
+<body>
+    <script>
+        let username = prompt("Please enter your name:");
+        let gender = prompt("Please enter your gender:").toLowerCase(); 
+
+        if (gender === "male") {
+            console.log("Welcome, Mr. " + username);
+        } else if (gender === "female") {
+            console.log("Welcome, Ms. " + username);
+        } else {
+            console.log("Welcome, " + username);
+        }
+    </script>
+</body>
+</html>
