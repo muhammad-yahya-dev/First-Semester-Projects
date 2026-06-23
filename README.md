@@ -1,14 +1,13 @@
-# First Semester Projects
+# Software Development Journey
 
-Welcome to my repository! This contains a collection of various web development projects and tasks completed during my first semester.
+Welcome to my central repository! This space serves as a comprehensive showcase of my engineering projects, assignments, and practical applications developed throughout my software engineering studies.
 
-## 🛠️ Technologies Used
-* **HTML5** & **CSS3** (Core structure and custom styling)
-* **Bootstrap** (Responsive layout and design)
-* **JavaScript** (Dynamic logic and functionality)
-* **jQuery** (DOM manipulation and animations)
+## 🛠️ Tech Stack & Skills
+* **Frontend:** HTML5, CSS3, Bootstrap, JavaScript, jQuery
+* **Backend & Databases:** PHP, SQL (Core database management and connectivity)
+* **Tools & Environment:** XAMPP, Git & GitHub
 
-## 📁 Key Features
-* Fully responsive web pages that work across all devices.
-* Functional utility apps like a **Calculator** and **Clock**.
-* Clean code structure and organized project assets.
+## 📁 Repository Structure
+The projects are organized systematically to demonstrate progress and technical growth across different modules and semesters:
+* **Core Web Modules:** Responsive templates, interactive web applications, and utility tools (like Calculators, Clocks, and E-Projects).
+* **Advanced Modules:** Database-driven applications and full-stack implementations.
